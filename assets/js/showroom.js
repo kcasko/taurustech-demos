@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const successMessage = document.getElementById('form-success');
 
   // Replace with your Formspree form ID from https://formspree.io
-  const FORMSPREE_ID = 'xrebldgy';
+  const FORMSPREE_ID = 'mlgdlveq';
 
   if (form) {
     form.addEventListener('submit', async (e) => {
