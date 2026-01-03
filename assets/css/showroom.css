@@ -67,14 +67,17 @@ body{
 
 .cta{
   text-decoration:none;
-  padding:10px 14px;
+  padding:10px 16px;
   border-radius:12px;
   border:1px solid rgba(124,77,255,.55);
   color:var(--text);
   background: rgba(12,16,32,.7);
+  transition: border-color .12s ease, box-shadow .12s ease;
 }
+
 .cta:hover{
-  border-color:rgba(0,229,255,.55);
+  border-color:rgba(0,229,255,.6);
+  box-shadow: 0 0 0 3px rgba(0,229,255,.15);
 }
 
 /* Grid */
@@ -95,17 +98,15 @@ body{
   border:1px solid var(--line);
   border-radius:16px;
   padding:18px;
-  transition: transform .12s ease, border-color .12s ease;
   display:flex;
   flex-direction:column;
+  transition: transform .12s ease, border-color .12s ease;
 }
 
 .card:hover{
   transform: translateY(-2px);
   border-color: rgba(124,77,255,.6);
 }
-
-/* Card header replaces screenshots */
 
 .card-head{
   display:flex;
@@ -144,7 +145,7 @@ body{
   color:var(--accent2);
 }
 
-/* Optional industry accents */
+/* Industry accents */
 
 .card.auto{ border-left:3px solid #4da3ff }
 .card.restaurant{ border-left:3px solid #7bd389 }
@@ -169,6 +170,22 @@ body{
   margin:0;
   color:var(--muted);
   line-height:1.6;
+}
+
+/* Notes CTA */
+
+.notes-cta{
+  margin-top:16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.notes-cta p{
+  margin:0;
+  font-size:14px;
+  color:var(--text);
 }
 
 /* Footer */
