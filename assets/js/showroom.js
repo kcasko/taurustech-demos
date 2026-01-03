@@ -17,24 +17,53 @@ document.addEventListener('DOMContentLoaded', () => {
       btnText.textContent = 'Sending...';
       
       try {
+        // Get form data
         const formData = new FormData(form);
-        const response = await fetch(form.action, {
+        const business = formData.get('business');
+        const type = formData.get('type');
+        const location = formData.get('location');
+        const email = formData.get('email');
+        const message = formData.get('message') || 'No additional details provided';
+        
+        // Create issue on GitHub (public API, no auth needed)
+        const issueBody = `**New Demo Request**
+
+**Business Name:** ${business}
+**Business Type:** ${type}
+**Location:** ${location}
+**Email:** ${email}
+
+**Message:**
+${message}
+
+---
+*Submitted: ${new Date().toLocaleString()}*`;
+        
+        const response = await fetch('https://api.github.com/repos/kcasko/taurustech-demos/issues', {
           method: 'POST',
-          body: formData,
           headers: {
-            'Accept': 'application/json'
-          }
+            'Content-Type': 'application/json',
+            'Accept': 'application/vnd.github.v3+json'
+          },
+          body: JSON.stringify({
+            title: `Demo Request: ${business}`,
+            body: issueBody,
+            labels: ['demo-request']
+          })
         });
         
-        if (response.ok) {
-          // Form will auto-redirect via FormSubmit _next parameter
-          // But we'll show a brief success state first
+        if (response.ok || response.status === 201) {
+          // Hide form and show success message
           form.style.display = 'none';
           successMessage.classList.add('show');
+          
+          // Reset form for future use
+          form.reset();
         } else {
           throw new Error('Form submission failed');
         }
       } catch (error) {
+        console.error('Submission error:', error);
         // Show error state
         btnText.textContent = 'Something went wrong';
         submitBtn.style.borderColor = 'var(--error)';

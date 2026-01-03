@@ -1,0 +1,48 @@
+name: Demo Request Form Submission
+
+on:
+  workflow_dispatch:
+    inputs:
+      business:
+        description: 'Business name'
+        required: true
+      type:
+        description: 'Type of business'
+        required: true
+      location:
+        description: 'City or service area'
+        required: true
+      email:
+        description: 'Email address'
+        required: true
+      message:
+        description: 'Additional message'
+        required: false
+
+jobs:
+  send-email:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send email notification
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "New Demo Request: ${{ github.event.inputs.business }}"
+          to: keith.casko@gmail.com
+          from: TaurusTech Demos <noreply@github.com>
+          body: |
+            New demo request received!
+            
+            Business Name: ${{ github.event.inputs.business }}
+            Business Type: ${{ github.event.inputs.type }}
+            Location: ${{ github.event.inputs.location }}
+            Email: ${{ github.event.inputs.email }}
+            
+            Message:
+            ${{ github.event.inputs.message }}
+            
+            ---
+            Submitted: ${{ github.event.repository.updated_at }}
