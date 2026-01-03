@@ -27,12 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         if (response.ok) {
-          // Hide form and show success message
+          // Form will auto-redirect via FormSubmit _next parameter
+          // But we'll show a brief success state first
           form.style.display = 'none';
           successMessage.classList.add('show');
-          
-          // Reset form for future use
-          form.reset();
         } else {
           throw new Error('Form submission failed');
         }
