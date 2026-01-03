@@ -172,20 +172,16 @@ body{
   line-height:1.6;
 }
 
+.notes .clarifier{
+  margin-top:10px;
+  color:var(--text);
+  font-size:14px;
+}
+
 /* Notes CTA */
 
 .notes-cta{
-  margin-top:16px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  flex-wrap:wrap;
-}
-
-.notes-cta p{
-  margin:0;
-  font-size:14px;
-  color:var(--text);
+  margin-top:14px;
 }
 
 /* Footer */
