@@ -90,16 +90,48 @@
         showing how your full website could work.
       </p>
 
-      <form method="post" action="YOUR_FORM_ENDPOINT">
-        <input type="text" name="business" placeholder="Business name" required />
-        <input type="text" name="type" placeholder="Type of business" required />
-        <input type="text" name="location" placeholder="City or service area" required />
-        <textarea name="message" placeholder="What are you looking to improve or replace?"></textarea>
+      <form method="post" action="https://formsubmit.co/keith.casko@gmail.com" id="demo-form">
+        <!-- FormSubmit configuration -->
+        <input type="hidden" name="_subject" value="New Demo Request - TaurusTech Showroom">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://demos.taurustech.me/thanks.html">
+        <input type="text" name="_honey" style="display:none">
+        
+        <div class="form-group">
+          <label for="business">Business name</label>
+          <input type="text" id="business" name="business" placeholder="e.g. Mike's Auto Shop" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="type">Type of business</label>
+            <input type="text" id="type" name="type" placeholder="e.g. Auto Repair" required />
+          </div>
+          <div class="form-group">
+            <label for="location">City or service area</label>
+            <input type="text" id="location" name="location" placeholder="e.g. Denver, CO" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="message">What are you looking to improve?</label>
+          <textarea id="message" name="message" placeholder="Tell me about your current website situation..."></textarea>
+        </div>
 
-        <button type="submit" class="cta">
-          Start my website demo
+        <button type="submit" class="cta submit-btn">
+          <span class="btn-text">Start my website demo</span>
+          <span class="btn-icon">→</span>
         </button>
       </form>
+
+      <div class="form-success" id="form-success">
+        <span class="success-icon">✓</span>
+        <h4>Demo request received!</h4>
+        <p>I'll be in touch soon with your custom demo.</p>
+      </div>
 
       <p class="form-note">
         Demos are built as previews for full website projects.
@@ -112,5 +144,6 @@
     <p>This is a demo showroom, not a real business directory.</p>
   </footer>
 
+  <script src="/assets/js/showroom.js"></script>
 </body>
 </html>
