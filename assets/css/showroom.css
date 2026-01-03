@@ -10,16 +10,24 @@
 
 *{box-sizing:border-box}
 html,body{height:100%}
+
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: radial-gradient(900px 500px at 20% 0%, rgba(124,77,255,.25), transparent 60%),
-              radial-gradient(900px 500px at 80% 10%, rgba(0,229,255,.16), transparent 55%),
-              var(--bg);
+  background:
+    radial-gradient(900px 500px at 20% 0%, rgba(124,77,255,.25), transparent 60%),
+    radial-gradient(900px 500px at 80% 10%, rgba(0,229,255,.16), transparent 55%),
+    var(--bg);
   color:var(--text);
 }
 
-.wrap{max-width:1080px;margin:0 auto;padding:24px}
+.wrap{
+  max-width:1080px;
+  margin:0 auto;
+  padding:24px;
+}
+
+/* Header */
 
 .header{
   display:flex;
@@ -29,15 +37,33 @@ body{
   border-bottom:1px solid var(--line);
 }
 
-.brand{display:flex;gap:14px;align-items:center}
-.logo{
-  width:44px;height:44px;border-radius:12px;
-  display:grid;place-items:center;
-  background: linear-gradient(135deg, rgba(124,77,255,.9), rgba(0,229,255,.75));
-  color:#05060a;font-weight:800;
+.brand{
+  display:flex;
+  gap:14px;
+  align-items:center;
 }
-.title h1{font-size:20px;margin:0}
-.title p{margin:4px 0 0;color:var(--muted);font-size:14px}
+
+.logo{
+  width:44px;
+  height:44px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  background: linear-gradient(135deg, rgba(124,77,255,.9), rgba(0,229,255,.75));
+  color:#05060a;
+  font-weight:800;
+}
+
+.title h1{
+  font-size:20px;
+  margin:0;
+}
+
+.title p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:14px;
+}
 
 .cta{
   text-decoration:none;
@@ -47,7 +73,11 @@ body{
   color:var(--text);
   background: rgba(12,16,32,.7);
 }
-.cta:hover{border-color:rgba(0,229,255,.55)}
+.cta:hover{
+  border-color:rgba(0,229,255,.55);
+}
+
+/* Grid */
 
 .grid{
   margin-top:22px;
@@ -56,32 +86,71 @@ body{
   gap:16px;
 }
 
+/* Cards */
+
 .card{
   text-decoration:none;
   color:inherit;
   background: rgba(12,16,32,.75);
   border:1px solid var(--line);
   border-radius:16px;
-  padding:16px;
+  padding:18px;
   transition: transform .12s ease, border-color .12s ease;
+  display:flex;
+  flex-direction:column;
 }
+
 .card:hover{
   transform: translateY(-2px);
   border-color: rgba(124,77,255,.6);
 }
 
-.thumb{
-  height:120px;
-  border-radius:12px;
-  background:
-    linear-gradient(135deg, rgba(124,77,255,.25), rgba(0,229,255,.12)),
-    repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 14px);
-  border:1px solid rgba(255,255,255,.06);
-  margin-bottom:12px;
+/* Card header replaces screenshots */
+
+.card-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:10px;
 }
 
-.card h2{margin:0 0 6px;font-size:16px}
-.card p{margin:0;color:var(--muted);font-size:14px;line-height:1.4}
+.icon{
+  width:36px;
+  height:36px;
+  border-radius:10px;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  background:
+    linear-gradient(135deg, rgba(124,77,255,.35), rgba(0,229,255,.25));
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.card h2{
+  margin:0;
+  font-size:16px;
+}
+
+.card p{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.4;
+}
+
+.card-link{
+  margin-top:12px;
+  font-size:14px;
+  color:var(--accent2);
+}
+
+/* Optional industry accents */
+
+.card.auto{ border-left:3px solid #4da3ff }
+.card.restaurant{ border-left:3px solid #7bd389 }
+.card.plumber{ border-left:3px solid var(--accent) }
+
+/* Notes */
 
 .notes{
   margin-top:22px;
@@ -90,8 +159,19 @@ body{
   border-radius:16px;
   background: rgba(12,16,32,.55);
 }
-.notes h3{margin:0 0 8px;font-size:16px}
-.notes p{margin:0;color:var(--muted);line-height:1.6}
+
+.notes h3{
+  margin:0 0 8px;
+  font-size:16px;
+}
+
+.notes p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* Footer */
 
 .footer{
   margin-top:20px;
