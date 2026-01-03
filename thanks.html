@@ -86,6 +86,39 @@
       height: 32px;
       font-size: 12px;
     }
+
+    .request-details {
+      text-align: left;
+      margin: 24px 0;
+      padding: 20px;
+      border-radius: 12px;
+      background: rgba(12,16,32,.5);
+      border: 1px solid var(--line);
+    }
+
+    .request-details h3 {
+      margin: 0 0 12px;
+      font-size: 14px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .detail-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .detail-row strong {
+      color: var(--muted);
+      min-width: 100px;
+    }
+
+    .detail-row span {
+      color: var(--text);
+    }
   </style>
 </head>
 <body>
@@ -99,6 +132,27 @@
         get back to you soon with a custom demo showing how your 
         website could work.
       </p>
+
+      <div class="request-details" id="request-details" style="display: none;">
+        <h3>Your Request</h3>
+        <div class="detail-row">
+          <strong>Business:</strong>
+          <span id="detail-business"></span>
+        </div>
+        <div class="detail-row">
+          <strong>Type:</strong>
+          <span id="detail-type"></span>
+        </div>
+        <div class="detail-row">
+          <strong>Location:</strong>
+          <span id="detail-location"></span>
+        </div>
+        <div class="detail-row">
+          <strong>Email:</strong>
+          <span id="detail-email"></span>
+        </div>
+      </div>
+
       <a class="cta" href="/">
         <span class="btn-text">Back to showroom</span>
         <span class="btn-icon">→</span>
@@ -110,6 +164,26 @@
       <span>TaurusTech</span>
     </div>
   </div>
+
+  <script>
+    // Display submitted form data if available
+    document.addEventListener('DOMContentLoaded', () => {
+      const requestData = sessionStorage.getItem('demoRequest');
+      if (requestData) {
+        const data = JSON.parse(requestData);
+        
+        document.getElementById('detail-business').textContent = data.business;
+        document.getElementById('detail-type').textContent = data.type;
+        document.getElementById('detail-location').textContent = data.location;
+        document.getElementById('detail-email').textContent = data.email;
+        
+        document.getElementById('request-details').style.display = 'block';
+        
+        // Clear the data after displaying
+        sessionStorage.removeItem('demoRequest');
+      }
+    });
+  </script>
 
 </body>
 </html>
