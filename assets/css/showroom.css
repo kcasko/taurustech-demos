@@ -173,7 +173,8 @@ body{
 }
 
 .notes .clarifier{
-  margin-top:10px;
+  margin-top:12px;
+  margin-bottom:6px;
   color:var(--text);
   font-size:14px;
 }
@@ -181,7 +182,15 @@ body{
 /* Notes CTA */
 
 .notes-cta{
-  margin-top:14px;
+  margin-top:18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.notes-cta .cta{
+  margin-top:4px;
 }
 
 /* Footer */
