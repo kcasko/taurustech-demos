@@ -4,30 +4,58 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('demo-form');
   const successMessage = document.getElementById('form-success');
 
+  // Replace with your Formspree form ID from https://formspree.io
+  const FORMSPREE_ID = 'xrebldgy';
+
   if (form) {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       
-      // Get form data
-      const formData = new FormData(form);
-      const business = formData.get('business');
-      const type = formData.get('type');
-      const location = formData.get('location');
-      const email = formData.get('email');
-      const message = formData.get('message') || 'No additional details provided';
+      const submitBtn = form.querySelector('.submit-btn');
+      const btnText = submitBtn.querySelector('.btn-text');
+      const originalText = btnText.textContent;
       
-      // Store data in sessionStorage for the thanks page
-      sessionStorage.setItem('demoRequest', JSON.stringify({
-        business,
-        type,
-        location,
-        email,
-        message,
-        timestamp: new Date().toLocaleString()
-      }));
+      // Disable button and show loading state
+      submitBtn.disabled = true;
+      btnText.textContent = 'Sending...';
       
-      // Redirect to thanks page
-      window.location.href = '/thanks.html';
+      try {
+        const formData = new FormData(form);
+        
+        const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+          method: 'POST',
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          // Store data for thanks page display
+          sessionStorage.setItem('demoRequest', JSON.stringify({
+            business: formData.get('business'),
+            type: formData.get('type'),
+            location: formData.get('location'),
+            email: formData.get('email'),
+            timestamp: new Date().toLocaleString()
+          }));
+          
+          // Redirect to thanks page
+          window.location.href = '/thanks.html';
+        } else {
+          throw new Error('Form submission failed');
+        }
+      } catch (error) {
+        console.error('Submission error:', error);
+        btnText.textContent = 'Something went wrong';
+        submitBtn.style.borderColor = 'var(--error)';
+        
+        setTimeout(() => {
+          btnText.textContent = originalText;
+          submitBtn.style.borderColor = '';
+          submitBtn.disabled = false;
+        }, 3000);
+      }
     });
   }
 
